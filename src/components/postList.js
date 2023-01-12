@@ -20,22 +20,32 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {fetchPosts} from '../actions';
+import UserHeader from './userHeader';
 
  class PostList extends Component {
+	
 	componentDidMount(){
 		this.props.fetchPosts()
 	}
   render() {
-	console.log('this.props',this.props)
+console.log(this.props)
 	return (
-	  <div>postList</div>
+	  <div>{this.props.posts.length !==0 ? this.props.posts.map(result=>{
+		return (<div key={result.id}><p > {result.id}) {result.title}</p>
+				<button>Check author details {result.userId}</button>
+			
+				<UserHeader userId={result.userId}/>
+				<hr/>
+				</div> )
+		
+	  }) : ""}</div>
 	)
   }
 }
 
 const mapStateToProps = ( state ) =>{
-	console.log(state)
-	return state
+
+	return {posts: state.posts}
 }
 export default connect(mapStateToProps, {fetchPosts: fetchPosts})(PostList)
 

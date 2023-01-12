@@ -1,18 +1,36 @@
 import {combineReducers} from 'redux'
 
-const data1 = () =>{
-	return 'abcdfgh'
-}
-const fetchPost = (post=null, action) =>{
-	
-	if(action.type==="FETCH_POSTS"){
-		console.log("Hii",action)
-		return action.payload
+
+const fetchPost = (state = [], action) => {
+	switch (action.type) {
+	  case 'FETCH_POSTS':
+		return action.payload;
+	  default:
+		return state;
 	}
-		return post
-}
+  };
+  
+
+//const fetchEachUser = (state=[], action) =>{
+//	if(action.type === "FETCH_USER"){
+//		console.log("FETCH_USER")
+//		return [...state, action.payload]
+//	}
+//	return state
+//}
+
+const  fetchEachUser = (state = [], action) => {
+	switch (action.type) {
+	  case 'FETCH_USER':
+		return [...state, action.payload];
+	  default:
+		return state;
+	}
+  };
+  
 
 export default combineReducers({
-	data1: data1,
-	fetchPost: fetchPost
+
+	posts: fetchPost,
+	users: fetchEachUser
 })
