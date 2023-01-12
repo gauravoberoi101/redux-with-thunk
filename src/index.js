@@ -9,7 +9,7 @@ import thunk from 'redux-thunk';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-//  <React.StrictMode>
+//  <React.StrictMode> // uing React.StrictMode causes API's to render 2 times, so i commented it
 	<Provider store={createStore(reducers, applyMiddleware(thunk))}>
     <App />
 	</Provider>
